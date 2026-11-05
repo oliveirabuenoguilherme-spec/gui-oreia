@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ficha de Persona - UX & Product Design</title>
+  <style>
+    :root {
+      --bg-color: #f4f6f9;
+      --card-bg: #ffffff;
+      --primary-color: #4f46e5;
+      --primary-light: #eef2ff;
+      --text-main: #1f2937;
+      --text-muted: #6b7280;
+      --border-color: #e5e7eb;
+      --danger-color: #ef4444;
+      --danger-bg: #fef2f2;
+      --success-color: #10b981;
+      --success-bg: #ecfdf5;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      padding: 2rem 1rem;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 900px;
+      background: var(--card-bg);
+      border-radius: 16px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+    }
+
+    /* Header Profile Section */
+    .profile-header {
+      background: var(--primary-light);
+      padding: 2.5rem;
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .avatar-container {
+      flex-shrink: 0;
+    }
+
+    .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--card-bg);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    .profile-info h1 {
+      font-size: 1.75rem;
+      color: var(--text-main);
+      margin-bottom: 0.25rem;
+    }
+
+    .profile-info .tagline {
+      font-size: 1rem;
+      color: var(--primary-color);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .quote-box {
+      font-style: italic;
+      color: var(--text-muted);
+      border-left: 3px solid var(--primary-color);
+      padding-left: 0.75rem;
+      font-size: 0.95rem;
+    }
+
+    /* Layout Grid */
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 2rem;
+      padding: 2.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .profile-header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .quote-box {
+        border-left: none;
+        border-top: 2px solid var(--primary-color);
+        padding-left: 0;
+        padding-top: 0.5rem;
+      }
+
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Column Styles */
+    .sidebar, .main-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 1.25rem;
+    }
+
+    .card h2 {
+      font-size: 1.1rem;
+      margin-bottom: 0.75rem;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* Attribute Lists */
+    .data-list {
+      list-style: none;
+    }
+
+    .data-list li {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      border-bottom: 1px dashed var(--border-color);
+      font-size: 0.9rem;
+    }
+
+    .data-list li:last-child {
+      border-bottom: none;
+    }
+
+    .data-list label {
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .data-list span {
+      font-weight: 600;
+    }
+
+    /* Highlights Sections */
+    .bullet-list {
+      list-style: disc;
+      padding-left: 1.25rem;
+      font-size: 0.95rem;
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .card-pain {
+      background-color: var(--danger-bg);
+      border-color: rgba(239, 68, 68, 0.2);
+    }
+
+    .card-pain h2 {
+      color: var(--danger-color);
+    }
+
+    .card-goals {
+      background-color: var(--success-bg);
+      border-color: rgba(16, 185, 129, 0.2);
+    }
+
+    .card-goals h2 {
+      color: var(--success-color);
+    }
+
+    /* Behavioral Tags */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .tag {
+      background: var(--primary-light);
+      color: var(--primary-color);
+      padding: 0.3rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Cabeçalho do Perfil -->
+    <header class="profile-header">
+      <div class="avatar-container">
+        <img class="avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=300" alt="Foto da Persona">
+      </div>
+      <div class="profile-info">
+        <h1>Mariana Souza</h1>
+        <p class="tagline">Analista de Marketing & Estudante Noturna</p>
+        <p class="quote-box">"Preciso de uma solução rápida que se encaixe nos 15 minutos livres do meu dia, sem complicar minha rotina."</p>
+      </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <div class="content-grid">
+      
+      <!-- Coluna Esquerda: Demografia e Hábitos -->
+      <aside class="sidebar">
+        <section class="card">
+          <h2>Perfil Demográfico</h2>
+          <ul class="data-list">
+            <li><label>Idade:</label> <span>28 anos</span></li>
+            <li><label>Ocupação:</label> <span>Analista Pleno</span></li>
+            <li><label>Escolaridade:</label> <span>Pós-graduação</span></li>
+            <li><label>Localização:</label> <span>São Paulo, SP</span></li>
+            <li><label>Renda:</label> <span>R$ 5.500/mês</span></li>
+            <li><label>Nível Técnico:</label> <span>Intermediário</span></li>
+          </ul>
+        </section>
+
+        <section class="card">
+          <h2>Canais & Hábitos</h2>
+          <div class="tags">
+            <span class="tag">Smartphone (iOS)</span>
+            <span class="tag">Notificações Push</span>
+            <span class="tag">Instagram</span>
+            <span class="tag">Podcasts no Trânsito</span>
+            <span class="tag">Cartão de Crédito</span>
+          </div>
+        </section>
+      </aside>
+
+      <!-- Coluna Direita: Contexto, Dores e Objetivos -->
+      <main class="main-content">
+        <section class="card">
+          <h2>Sobre / Biografia</h2>
+          <p style="font-size: 0.95rem; line-height: 1.5; color: #374151;">
+            Mariana tem uma rotina intensa entre o trabalho presencial e os estudos. Passa cerca de 2 horas por dia no transporte público e usa esse tempo para tentar se organizar, ler notícias e gerenciar tarefas pessoais. Valoriza marcas e ferramentas que otimizam seu tempo e oferecem experiências fluidas no celular.
+          </p>
+        </section>
+
+        <section class="card card-pain">
+          <h2>Frustrações & Dores (Pain Points)</h2>
+          <ul class="bullet-list">
+            <li>Dificuldade para manter o foco com o excesso de informações diárias.</li>
+            <li>Falta de tempo para aprender a usar ferramentas muito complexas.</li>
+            <li>Processos burocráticos que exigem uso de computador desktop.</li>
+          </ul>
+        </section>
+
+        <section class="card card-goals">
+          <h2>Objetivos & Necessidades</h2>
+          <ul class="bullet-list">
+            <li>Centralizar suas tarefas diárias em uma única plataforma móvel.</li>
+            <li>Automatizar lembretes importantes para não perder prazos.</li>
+            <li>Encontrar soluções visuais e intuitivas para tomadas de decisão rápidas.</li>
+          </ul>
+        </section>
+      </main>
+
+    </div>
+  </div>
+
+</body>
+</html>
